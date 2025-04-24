@@ -137,7 +137,7 @@ static void print_megaprime_numbers(std::vector<unsigned int> &megaprimes)
  * function     get_unsigned_int
  * @brief       This function reads characters from the user input one by one 
  *              and constructs an unsigned integer. It stops when the user 
- *              presses the Enter key (`'\n'`). If a non-numeric character is 
+ *              presses the Enter key ('\n'). If a non-numeric character is 
  *              encountered, the function outputs an error message and sets the 
  *              `valid_flag` to false
  * @param       number The variable to store the unsigned integer value entered.
