@@ -192,7 +192,7 @@ int main()
     unsigned int maxnum; 
     std::vector <unsigned int> mega_primes;
 
-   if(get_unsigned_int(maxnum) && maxnum)
+   if(get_unsigned_int(maxnum))
    {
         mega_primes = find_megaprime_numbers(maxnum);
         print_megaprime_numbers(mega_primes); 
