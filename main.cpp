@@ -150,22 +150,30 @@ static bool get_unsigned_int(unsigned int &number)
  {
     bool valid_flag = true;
     char ch;
+    unsigned long int tmp=0;
     int digit_count = 0;
     number = 0;
 
-    std::cout << "Enter a number: ";
+    std::cout << "Enter a number(Range between 0 and 4294967295) : ";
     while ((ch = getchar()) != '\n' && valid_flag) 
     {
         
-        if (ch >= '0' && ch <= '9' && digit_count <=9) 
+        if (ch >= '0' && ch <= '9') 
         {
-            number = (number * 10) + (ch - '0'); 
-            digit_count++;
+            tmp = (tmp * 10) + (ch - '0'); 
         } 
         else 
         {
             valid_flag = false;
         }
+    }
+    if(tmp > UNSIGNED_INT_MAX && valid_flag)
+    {
+        valid_flag = false;
+    }
+    else if(valid_flag)
+    {
+        number = static_cast<unsigned int> (tmp);
     }
     return valid_flag;
 }
@@ -184,7 +192,7 @@ int main()
     unsigned int maxnum; 
     std::vector <unsigned int> mega_primes;
 
-   if(get_unsigned_int(maxnum) && maxnum < UNSIGNED_INT_MAX )
+   if(get_unsigned_int(maxnum) && maxnum)
    {
         mega_primes = find_megaprime_numbers(maxnum);
         print_megaprime_numbers(mega_primes); 
