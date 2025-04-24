@@ -1,7 +1,16 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
 #include <iostream>
-#include<vector>
-
-
+#include <vector>
+#include <limits>
+#include <conio.h>     
+#include <string>
 /******************************************************************************
  * @file    megaprime.cpp
  * @brief   Program to identify and print mega prime numbers up to a given limit.
@@ -134,6 +143,42 @@ static void print_megaprime_numbers(std::vector<unsigned int> &megaprimes)
 }
 //==============================================================================
 /**
+ * function     get_unsigned_int
+ * @brief       This function reads characters from the user input one by one 
+ *              and constructs an unsigned integer. It stops when the user 
+ *              presses the Enter key (`'\n'`). If a non-numeric character is 
+ *              encountered, the function outputs an error message and sets the 
+ *              `valid_flag` to false
+ * @param       number The variable to store the unsigned integer value entered.
+ * @return      valid_flag True if valid nuber is entered
+ *              false if number is invalid
+ */
+//==============================================================================
+static bool get_unsigned_int(unsigned int &number)
+ {
+    bool valid_flag = true;
+    char ch;
+    int digit_count = 0;
+    number = 0;
+
+    std::cout << "Enter a number: ";
+    while ((ch = getchar()) != '\n' && valid_flag) 
+    {
+        
+        if (ch >= '0' && ch <= '9' && digit_count <=9) 
+        {
+            number = (number * 10) + (ch - '0'); 
+            digit_count++;
+        } 
+        else 
+        {
+            valid_flag = false;
+        }
+    }
+    return valid_flag;
+}
+//==============================================================================
+/**
  * function     main()
  * @brief       Main function that starts program execution.
  *              Prompts the user to enter a maximum number and prints all
@@ -144,19 +189,18 @@ static void print_megaprime_numbers(std::vector<unsigned int> &megaprimes)
 //==============================================================================
 int main()
 {
-    unsigned int maxnum;
+    unsigned int maxnum; 
     std::vector <unsigned int> mega_primes;
-    std::cout <<"Unsigned integer:" << std::endl;
-    std::cin >> maxnum;
-    if(maxnum >= 0 && maxnum <= UNSIGNED_INT_MAX)
-    {
+
+   if(get_unsigned_int(maxnum) && maxnum < UNSIGNED_INT_MAX )
+   {
         mega_primes = find_megaprime_numbers(maxnum);
         print_megaprime_numbers(mega_primes); 
-    }
-    else
-    {
-        std::cout << "Invalid Number (Range should be between 0 - 4294967295)" << std::endl;
-    }
+   }
+   else
+   {
+       std::cout << " Invalid number entered";
+   }
     return 0;
 }
 
