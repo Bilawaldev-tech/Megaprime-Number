@@ -1,11 +1,3 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -107,9 +99,8 @@ static bool ismegaprime(unsigned int number)
 //==============================================================================
 static std::vector<unsigned int> find_megaprime_numbers(unsigned int number)
 {
-    int i;
     std::vector<unsigned int> megaprimes ;
-    for(i=2; i<=number ; i++)
+    for(int i=2; i<=number ; i++)
     {
         if(ismegaprime(i))
         {
@@ -155,7 +146,7 @@ static void print_megaprime_numbers(std::vector<unsigned int> &megaprimes)
  */
 //==============================================================================
 static bool get_unsigned_int(unsigned int &number)
- {
+{
     bool valid_flag = true;
     char ch;
     unsigned long int tmp=0;
@@ -169,17 +160,24 @@ static bool get_unsigned_int(unsigned int &number)
         if (ch >= '0' && ch <= '9') 
         {
             tmp = (tmp * 10) + (ch - '0'); 
+            digit_count++;
+            std::cout<< "number :" << tmp << std::endl;
+            if(tmp > UNSIGNED_INT_MAX)
+            {
+                valid_flag = false;
+                break;
+            }
         } 
         else 
         {
             valid_flag = false;
         }
     }
-    if(tmp > UNSIGNED_INT_MAX && valid_flag)
+    if(digit_count == 0)
     {
         valid_flag = false;
     }
-    else if(valid_flag)
+    if(valid_flag)
     {
         number = static_cast<unsigned int> (tmp);
     }
@@ -211,4 +209,3 @@ int main()
    }
     return 0;
 }
-
