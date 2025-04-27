@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <limits>
-#include <conio.h>     
 #include <string>
 /******************************************************************************
  * @file    megaprime.cpp
@@ -29,7 +27,7 @@
 //==============================================================================
 static bool isprime(unsigned int number)
 {
-    int i;
+    unsigned int i;
     bool p_flag = true;
     if(number <= 1)
     {
@@ -100,7 +98,7 @@ static bool ismegaprime(unsigned int number)
 static std::vector<unsigned int> find_megaprime_numbers(unsigned int number)
 {
     std::vector<unsigned int> megaprimes ;
-    for(int i=2; i<=number ; i++)
+    for(unsigned int i=2; i<=number ; i++)
     {
         if(ismegaprime(i))
         {
@@ -120,7 +118,6 @@ static std::vector<unsigned int> find_megaprime_numbers(unsigned int number)
 //==============================================================================
 static void print_megaprime_numbers(std::vector<unsigned int> &megaprimes)
 {
-    int i;
     std::cout << "[" ;
     for(auto it = megaprimes.begin() ; it != megaprimes.end() ; ++it)
     {
